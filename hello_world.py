@@ -1,3 +1,5 @@
+import newrelic.agent
+
 from flask import Flask
 
 app = Flask(__name__)
@@ -16,6 +18,10 @@ def page():
 
 @app.route("/test")
 def test():
-	return "Test"		
+	name = "TEST_ROUTE!!!"
+	newrelic.agent.set_transaction_name(name)
+	return "test"		
+
+	
 
 if __name__ == "__main__": app.run()	
